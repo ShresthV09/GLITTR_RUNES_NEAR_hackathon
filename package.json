@@ -9,16 +9,26 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@bitcoin-design/bitcoin-icons": "^0.1.1",
+    "@glittr-sdk/borsh": "2.4.0",
+    "@glittr-sdk/lasereyes": "^0.0.136",
+    "@glittr-sdk/sdk": "^0.29.1",
+    "@prisma/client": "^6.4.1",
+    "lucide-react": "^0.477.0",
+    "next": "15.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.2.0"
+    "viem": "^2.23.5",
+    "wagmi": "^2.14.12",
+    "web3modal": "^1.9.12"
   },
   "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
     "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4"
+    "@types/node": "^20",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19",
+    "prisma": "^6.4.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }
