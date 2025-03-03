@@ -1,6 +1,3 @@
-// utils/swap.ts
-
-// Define types for exchange rates
 type TokenSymbol = "BTC" | "NEAR" | "ETH" | "USD";
 
 interface ExchangeRate {
@@ -14,7 +11,6 @@ type ExchangeRates = {
   [key in TokenSymbol]: Omit<ExchangeRate, key>;
 };
 
-// Mock exchange rates - in a real app, these would come from an API
 const EXCHANGE_RATES: ExchangeRates = {
   BTC: {
     USD: 65000,
@@ -38,16 +34,12 @@ const EXCHANGE_RATES: ExchangeRates = {
   } as Omit<ExchangeRate, "USD">,
 };
 
-/**
- * Calculate the swap rate between two tokens
- */
 export const calculateSwapRate = (
   fromToken: TokenSymbol,
   toToken: TokenSymbol
 ): number => {
   if (fromToken === toToken) return 1;
 
-  // Check if direct rate exists
   if (
     EXCHANGE_RATES[fromToken] &&
     (EXCHANGE_RATES[fromToken] as any)[toToken]
@@ -55,7 +47,6 @@ export const calculateSwapRate = (
     return (EXCHANGE_RATES[fromToken] as any)[toToken];
   }
 
-  // Try to calculate via USD
   if (
     EXCHANGE_RATES[fromToken] &&
     (EXCHANGE_RATES[fromToken] as any).USD &&
@@ -71,9 +62,6 @@ export const calculateSwapRate = (
   throw new Error(`Cannot calculate swap rate from ${fromToken} to ${toToken}`);
 };
 
-/**
- * Calculate the estimated amount after swap
- */
 export const calculateSwapAmount = (
   fromToken: TokenSymbol,
   toToken: TokenSymbol,
@@ -83,16 +71,10 @@ export const calculateSwapAmount = (
   return amount * rate;
 };
 
-/**
- * Calculate the swap fee (0.5% in this example)
- */
 export const calculateSwapFee = (amount: number): number => {
   return amount * 0.005;
 };
 
-/**
- * Calculate the final amount after swap (including fee)
- */
 export const calculateFinalSwapAmount = (
   fromToken: TokenSymbol,
   toToken: TokenSymbol,
@@ -103,9 +85,6 @@ export const calculateFinalSwapAmount = (
   return swapAmount - fee;
 };
 
-/**
- * Get the USD value of a token amount
- */
 export const getUSDValue = (token: TokenSymbol, amount: number): number => {
   if (token === "USD") return amount;
 
@@ -116,16 +95,10 @@ export const getUSDValue = (token: TokenSymbol, amount: number): number => {
   throw new Error(`Cannot calculate USD value for ${token}`);
 };
 
-/**
- * Calculate BTC to NEAR conversion
- */
 export const calculateBTCToNEAR = (amount: number, rate: number): number => {
   return amount * rate;
 };
 
-/**
- * Calculate NEAR to BTC conversion
- */
 export const calculateNEARToBTC = (amount: number, rate: number): number => {
   return amount * rate;
 };

@@ -53,15 +53,13 @@ const CodeSubmissionCard: React.FC = () => {
         }
       });
       
-      // Call mock SDK for verification
       await mockSDKCalls.submitForVerification(selectedJob, files);
       
-      // Open the analysis modal and start analyzing
       setIsAnalyzing(true);
       setIsModalOpen(true);
       
-      // In a real implementation, you would read the file contents here
-      // For this example, we'll just use mock data
+      
+     
       const mockFileContents = files.map(file => ({
         name: file,
         content: `// Mock content for ${file}`,
@@ -70,14 +68,14 @@ const CodeSubmissionCard: React.FC = () => {
                   file.endsWith('.py') ? 'python' : 'text'
       }));
       
-      // Get the selected job details
+     
       const jobData = state.freelancerJobs.find(job => job.id === selectedJob);
       
       if (!jobData) {
         throw new Error('Selected job not found');
       }
       
-      // Prepare the analysis request
+      
       const analysisRequest: CodeAnalysisRequest = {
         files: mockFileContents,
         requirements: jobData.requirements,
@@ -88,12 +86,11 @@ const CodeSubmissionCard: React.FC = () => {
         }
       };
       
-      // Call the GPT API
+    
       const result = await gptApiService.analyzeCode(analysisRequest);
       setAnalysisResult(result);
       setIsAnalyzing(false);
       
-      // Update global state with AI verification result
       dispatch({
         type: 'SUBMIT_FOR_VERIFICATION',
         payload: {
@@ -102,7 +99,7 @@ const CodeSubmissionCard: React.FC = () => {
         }
       });
       
-      // Reset form but do not close modal
+     
       setFiles([]);
       setNotes('');
     } catch (error) {

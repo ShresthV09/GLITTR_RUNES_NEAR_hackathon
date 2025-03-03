@@ -1,11 +1,11 @@
-// components/freelancer/AIFeedbackWidget.tsx
+
 'use client';
 
 import React from 'react';
 import { BarChart2, AlertCircle } from 'lucide-react';
 import { useTrustLock } from '../../context/TrustLockContext';
 
-// Interface for AI feedback result that would come from GPT API
+
 interface AIFeedbackResult {
   score: number;
   issues: {
@@ -23,12 +23,12 @@ interface AIFeedbackResult {
 const AIFeedbackWidget: React.FC = () => {
   const { state } = useTrustLock();
   
-  // Find a submitted job that needs improvement
+  
   const submittedJob = state.freelancerJobs.find(job => 
     job.status === 'Submitted' && job.aiScore !== null && job.aiScore < 80 && job.aiScore >= 60
   );
   
-  // Mock AI feedback result - in a real app, this would come from GPT API
+  
   const mockFeedbackResult: AIFeedbackResult = submittedJob ? {
     score: submittedJob.aiScore || 0,
     issues: {

@@ -31,7 +31,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-          <LaserEyesProvider config={{ network : NETWORK == "regtest" ? GLITTR_DEVNET : NETWORK == "testnet" ? TESTNET4 : NETWORK}}> 
+          <LaserEyesProvider config={{ network : NETWORK == "regtest" ? GLITTR_DEVNET : NETWORK == "testnet" ? TESTNET4 : (NETWORK as any)}}> 
             <TrustLockProvider>
               {children}
             </TrustLockProvider>

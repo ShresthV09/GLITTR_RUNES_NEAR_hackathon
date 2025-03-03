@@ -1,4 +1,4 @@
-// components/client/ContractCreationCard.tsx
+  
 'use client';
 
 import React, { useState } from 'react';
@@ -18,10 +18,8 @@ const ContractCreationCard: React.FC = () => {
       setError(null);
       setSuccess(null);
 
-      // Call the mock SDK function (in production, this would use the real SDK)
       const newContract = await mockSDKCalls.createContract();
       
-      // Update global state with the new contract
       dispatch({
         type: 'CREATE_CONTRACT',
         payload: {

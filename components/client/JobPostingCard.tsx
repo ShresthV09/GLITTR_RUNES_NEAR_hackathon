@@ -1,4 +1,3 @@
-// components/client/JobPostingCard.tsx
 'use client';
 
 import React, { useState } from 'react';

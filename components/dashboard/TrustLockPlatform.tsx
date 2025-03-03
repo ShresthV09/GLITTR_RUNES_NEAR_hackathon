@@ -11,7 +11,7 @@ import ViewToggle from '../ui/ViewToggle';
 const TrustLockPlatform: React.FC = () => {
   const { state, dispatch } = useTrustLock();
   
-  // Handle view toggle
+  
   const handleViewToggle = (view: 'client' | 'freelancer') => {
     dispatch({ type: 'SWITCH_VIEW', payload: view });
   };
@@ -20,9 +20,9 @@ const TrustLockPlatform: React.FC = () => {
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-900 to-gray-950 text-white">
       <Navbar />
       
-      {/* Main Content */}
+     
       <main className="flex-1 p-4 md:p-6 lg:p-8">
-        {/* Page Title Section */}
+       
         <div className="mb-8">
           <div className="flex items-center justify-between">
             <h1 className="text-3xl md:text-4xl font-bold">

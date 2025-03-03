@@ -1,4 +1,4 @@
-// components/freelancer/CommitmentCard.tsx
+
 'use client';
 
 import React from 'react';

@@ -1,4 +1,4 @@
-// components/freelancer/CodeAnalysisModal.tsx
+
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -46,7 +46,7 @@ const CodeAnalysisModal: React.FC<CodeAnalysisModalProps> = ({
     suggestions: true
   });
   
-  // Reset tabs when modal opens
+  
   useEffect(() => {
     if (isOpen) {
       setActiveTab('overview');

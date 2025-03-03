@@ -1,4 +1,3 @@
-// context/TrustLockContext.tsx
 'use client';
 
 import React, { createContext, useContext, useReducer, ReactNode } from 'react';
@@ -9,7 +8,6 @@ import { Job, JobOffer, Contract, PaymentPreferences } from '../types/escrow';
 interface TrustLockContextType {
   state: TrustLockState;
   dispatch: React.Dispatch<TrustLockAction>;
-  // Helper functions for CRUD operations
   createJob: (job: Omit<Job, 'id' | 'client' | 'status' | 'aiScore' | 'files'>) => void;
   updateJob: (job: Partial<Job> & { id: string }) => void;
   deleteJob: (id: string) => void;
@@ -27,10 +25,8 @@ interface TrustLockContextType {
   switchView: (view: 'client' | 'freelancer') => void;
 }
 
-// Create the context
 const TrustLockContext = createContext<TrustLockContextType | undefined>(undefined);
 
-// Create a provider component
 interface TrustLockProviderProps {
   children: ReactNode;
 }
@@ -38,7 +34,6 @@ interface TrustLockProviderProps {
 export const TrustLockProvider: React.FC<TrustLockProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(trustLockReducer, initialState);
 
-  // Helper functions for CRUD operations
   const createJob = (job: Omit<Job, 'id' | 'client' | 'status' | 'aiScore' | 'files'>) => {
     dispatch({ type: 'CREATE_JOB', payload: job });
   };
@@ -126,7 +121,6 @@ export const TrustLockProvider: React.FC<TrustLockProviderProps> = ({ children }
   );
 };
 
-// Custom hook to use the TrustLock context
 export const useTrustLock = (): TrustLockContextType => {
   const context = useContext(TrustLockContext);
   if (context === undefined) {

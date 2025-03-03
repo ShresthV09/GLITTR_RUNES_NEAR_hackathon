@@ -1,28 +1,15 @@
-// utils/formatters.ts
-/**
- * Format a number as BTC with 8 decimal places
- */
 export const formatBTC = (amount: number): string => {
   return `${amount.toFixed(8)} BTC`;
 };
 
-/**
- * Format a number as NEAR with 2 decimal places
- */
 export const formatNEAR = (amount: number): string => {
   return `${amount.toFixed(2)} NEAR`;
 };
 
-/**
- * Format a number as USD with 2 decimal places
- */
 export const formatUSD = (amount: number): string => {
   return `$${amount.toFixed(2)}`;
 };
 
-/**
- * Format a date as a relative time (e.g. "2 days ago")
- */
 export const formatRelativeTime = (date: Date | string | number): string => {
   const now = new Date();
   const then = new Date(date);
@@ -68,17 +55,11 @@ export const formatShortDate = (date: Date | string | number): string => {
   });
 };
 
-/**
- * Truncate a string to a specified length with ellipsis
- */
 export const truncateString = (str: string, maxLength: number): string => {
   if (str.length <= maxLength) return str;
   return `${str.substring(0, maxLength)}...`;
 };
 
-/**
- * Format a blockchain address for display (e.g. "0x1234...5678")
- */
 export const formatAddress = (
   address: string,
   startChars = 6,
@@ -90,9 +71,6 @@ export const formatAddress = (
   )}`;
 };
 
-/**
- * Get color class based on job status
- */
 export const getStatusColorClass = (status: string): string => {
   switch (status) {
     case "In Progress":
@@ -110,9 +88,6 @@ export const getStatusColorClass = (status: string): string => {
   }
 };
 
-/**
- * Get color class based on AI score
- */
 export const getAIScoreColorClass = (score: number | null): string => {
   if (score === null) return "bg-gray-500";
   if (score >= 80) return "bg-green-500";

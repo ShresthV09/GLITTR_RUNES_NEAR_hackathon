@@ -1,4 +1,4 @@
-// context/initialState.ts
+
 import {
   Job,
   JobOffer,
@@ -141,7 +141,7 @@ export const initialState: TrustLockState = {
     stakes: {
       total: 0.16,
       atRisk: 0.12,
-      completed: 0.04,
+      locked: 0.04,
     },
   },
   swapRates: {

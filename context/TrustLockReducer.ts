@@ -1,4 +1,3 @@
-// context/TrustLockReducer.ts
 import { TrustLockState } from "./initialState";
 import { Job, JobOffer, Contract, PaymentPreferences } from "../types/escrow";
 
@@ -52,29 +51,6 @@ export const trustLockReducer = (
         files: [],
         ...action.payload,
       };
-
-      // For now, we'll just update the state without DB operations
-      // Database operations should be handled in a separate service layer
-      // or using React Query mutations for proper async handling
-
-      // Example of how you would save to DB in a real implementation:
-      /*
-      try {
-        await prisma.job.create({
-          data: {
-            title: newJob.title,
-            description: newJob.description,
-            requirements: newJob.requirements,
-            clientStake: newJob.amount.toString(),
-            clientId: "your-user-id", // This would come from auth
-            status: "OPEN",
-            deadline: new Date(Date.now() + newJob.deadline * 24 * 60 * 60 * 1000),
-          },
-        });
-      } catch (error) {
-        console.error("Failed to save job to database:", error);
-      }
-      */
 
       return {
         ...state,

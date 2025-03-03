@@ -1,12 +1,9 @@
-
-// components/client/AIVerificationWidget.tsx
 'use client';
 
-import React from 'react';
-import { Check, Layers } from 'lucide-react';
-import { useTrustLock } from '../../context/TrustLockContext';
+import React from "react";
+import { Check, Layers } from "lucide-react";
+import { useTrustLock } from "../../context/TrustLockContext";
 
-// Interface for AI verification result that would come from GPT API
 interface AIVerificationResult {
   score: number;
   tests: {
@@ -22,12 +19,12 @@ interface AIVerificationResult {
 const AIVerificationWidget: React.FC = () => {
   const { state, dispatch } = useTrustLock();
   
-  // Find a job that's been AI verified or has a high score
+  
   const verifiedJob = state.jobs.find(job => 
     job.status === 'AI Verified' || (job.status === 'Submitted' && job.aiScore && job.aiScore >= 80)
   );
   
-  // Mock AI verification result - in a real app, this would come from GPT API
+  
   const mockVerificationResult: AIVerificationResult = verifiedJob ? {
     score: verifiedJob.aiScore || 0,
     tests: {

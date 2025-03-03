@@ -1,5 +1,3 @@
-
-// components/client/DisputeCard.tsx
 'use client';
 
 import React from 'react';

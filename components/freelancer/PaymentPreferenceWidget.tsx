@@ -1,4 +1,3 @@
-// components/freelancer/PaymentPreferenceWidget.tsx
 'use client';
 
 import React, { useState } from 'react';
@@ -25,7 +24,6 @@ const PaymentPreferenceWidget: React.FC = () => {
       }
     });
     
-    // Show a confirmation message (in a real app, you might use a toast notification)
     alert('Payment preferences saved successfully!');
   };
   

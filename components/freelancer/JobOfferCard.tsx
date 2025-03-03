@@ -1,6 +1,5 @@
 
 
-// components/freelancer/JobOfferCard.tsx
 'use client';
 
 import React from 'react';
