@@ -1,34 +1,23 @@
-// lib/gpt-api.ts
-
-/**
- * Interface for code analysis request
- */
 export interface CodeAnalysisRequest {
-  // The code/files to be analyzed
   files: {
     name: string;
     content: string;
     language?: string;
   }[];
-  // The requirements the code should meet
+
   requirements: string;
-  // Additional context about the project
+
   context?: string;
-  // Optional metadata
+
   metadata?: Record<string, any>;
 }
 
-/**
- * Interface for code analysis response
- */
 export interface CodeAnalysisResponse {
-  // Overall score percentage (0-100)
   score: number;
-  // Verification status
+
   status: "pass" | "fail" | "warn";
-  // Detailed analysis breakdown
+
   analysis: {
-    // Testing results
     tests: {
       total: number;
       passed: number;
@@ -50,15 +39,15 @@ export interface CodeAnalysisResponse {
           severity: "critical" | "high" | "medium" | "low";
           title: string;
           description: string;
-          location?: string; // file and line number
+          location?: string;
           suggestion: string;
         }[];
       };
     };
-    // Code quality assessment
+
     quality: {
-      score: number; // 0-100
-      grade: string; // A+, A, B+, etc.
+      score: number;
+      grade: string;
       metrics: {
         complexity: number;
         maintainability: number;
@@ -72,7 +61,7 @@ export interface CodeAnalysisResponse {
         priority: "high" | "medium" | "low";
       }[];
     };
-    // Requirements fulfillment
+
     requirements: {
       fulfilled: number;
       total: number;
@@ -82,7 +71,7 @@ export interface CodeAnalysisResponse {
         notes?: string;
       }[];
     };
-    // Performance assessment
+
     performance?: {
       score: number;
       issues: {
@@ -93,22 +82,19 @@ export interface CodeAnalysisResponse {
       }[];
     };
   };
-  // Overall summary
+
   summary: string;
-  // Suggestions for improvement
+
   suggestions: {
     title: string;
     description: string;
     priority: "high" | "medium" | "low";
     codeSnippet?: string;
   }[];
-  // Time of analysis
+
   timestamp: string;
 }
 
-/**
- * GPT API service for code analysis
- */
 class GPTApiService {
   private apiUrl: string;
   private apiKey: string;
@@ -119,17 +105,11 @@ class GPTApiService {
     this.apiKey = "";
   }
 
-  /**
-   * Configure the API endpoint and key
-   */
   configure(apiUrl: string, apiKey: string = "") {
     this.apiUrl = apiUrl;
     this.apiKey = apiKey;
   }
 
-  /**
-   * Analyze code using the API
-   */
   async analyzeCode(
     request: CodeAnalysisRequest
   ): Promise<CodeAnalysisResponse> {
@@ -152,30 +132,21 @@ class GPTApiService {
     } catch (error) {
       console.error("Error analyzing code:", error);
 
-      // If API fails, use mock data for demo purposes
       return this.getMockAnalysisResult(request);
     }
   }
 
-  /**
-   * Generate mock analysis result (fallback if API fails)
-   * Should only be used for development/demo purposes
-   */
   private getMockAnalysisResult(
     request: CodeAnalysisRequest
   ): CodeAnalysisResponse {
-    // Generate a random score between 60 and 95
     const score = Math.floor(Math.random() * (95 - 60) + 60);
     const status = score >= 80 ? "pass" : "warn";
 
-    // Create mock test results
     const totalTests = 8;
     const passedTests = Math.floor((score / 100) * totalTests);
 
-    // Generate mock vulnerabilities based on score
     const vulnCount = score >= 90 ? 0 : score >= 80 ? 1 : 2;
 
-    // Generate mock data
     return {
       score,
       status,
@@ -359,29 +330,4 @@ class GPTApiService {
   }
 }
 
-// Export singleton instance
 export const gptApiService = new GPTApiService();
-
-// Example usage:
-/*
-  import { gptApiService } from '../lib/gpt-api';
-  
-  // Configure API (optional, defaults to local API route)
-  gptApiService.configure('/api/code-analysis');
-  
-  // Analyze code
-  const analysisRequest = {
-    files: [
-      { name: 'app.js', content: '...' },
-      { name: 'utils.js', content: '...' }
-    ],
-    requirements: 'The application should...'
-  };
-  
-  try {
-    const result = await gptApiService.analyzeCode(analysisRequest);
-    console.log('Analysis result:', result);
-  } catch (error) {
-    console.error('Analysis failed:', error);
-  }
-  */

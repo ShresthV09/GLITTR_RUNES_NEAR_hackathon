@@ -13,21 +13,6 @@ async function main() {
     wif: "cW84FgWG9U1MpKvdzZMv4JZKLSU7iFAzMmXjkGvGUvh5WvhrEASj",
     network: NETWORK,
   });
-
-  const c = txBuilder.freeMint({
-    amount_per_mint: "2",
-    divisibility: 18,
-    live_time: 0,
-    supply_cap: "2000",
-    ticker: "TEST",
-  });
-
-  const txid = await client.createAndBroadcastTx({
-    account: account.p2pkh(),
-    tx: c,
-    outputs: [],
-  });
-  console.log("TXID : ", txid);
 }
 
 main();

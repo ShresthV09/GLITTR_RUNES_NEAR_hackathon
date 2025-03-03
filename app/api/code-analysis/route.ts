@@ -1,20 +1,13 @@
-// app/api/code-analysis/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import {
   CodeAnalysisRequest,
   CodeAnalysisResponse,
 } from "../../../lib/gpt-api";
 
-/**
- * This is a placeholder for the actual GPT API integration
- * In a real implementation, you would call the OpenAI API here
- */
 export async function POST(request: NextRequest) {
   try {
-    // Parse the request body
     const body: CodeAnalysisRequest = await request.json();
 
-    // Validate the request
     if (!body.files || !body.files.length) {
       return NextResponse.json(
         { error: "No files provided for analysis" },
@@ -35,27 +28,17 @@ export async function POST(request: NextRequest) {
       body.files.map((f) => f.name).join(", ")
     );
 
-    // In a real implementation, you would:
-    // 1. Format the prompt for GPT
-    // 2. Call the OpenAI API
-    // 3. Parse the response
-    // 4. Return the formatted analysis
-
-    // For now, simulate a delay and return mock data
     await new Promise((resolve) => setTimeout(resolve, 3000));
 
-    // Generate a random score between 60 and 95
     const score = Math.floor(Math.random() * (95 - 60) + 60);
     const status = score >= 80 ? "pass" : "warn";
 
-    // Create mock test results
     const totalTests = 8;
     const passedTests = Math.floor((score / 100) * totalTests);
 
-    // Generate mock vulnerabilities based on score
     const vulnCount = score >= 90 ? 0 : score >= 80 ? 1 : 2;
 
-    // Mock response
+   
     const response: CodeAnalysisResponse = {
       score,
       status,
@@ -125,7 +108,7 @@ export async function POST(request: NextRequest) {
           },
         },
         quality: {
-          score: score + (Math.random() * 5 - 2.5), // slight variation around the main score
+          score: score + (Math.random() * 5 - 2.5), 
           grade:
             score >= 90
               ? "A+"
